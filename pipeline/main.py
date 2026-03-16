@@ -17,17 +17,21 @@ from load import load_dataframe
 
 
 def main():
+    # On charge competition par competition pour garder un flux ETL lisible.
     for competition_code, competition_name in COMPETITIONS.items():
         print(f"\n=== {competition_name} ({competition_code}) ===")
 
+        # 1) Reference competition (parents FK)
         raw_competition = get_competition(competition_code)
         competition_df = transform_competition(raw_competition)
         load_dataframe(competition_df, "competitions")
 
+        # 2) Teams (utilisees ensuite par matches, standings, scorers)
         raw_teams = get_teams(competition_code)
         teams_df = transform_teams(raw_teams)
         load_dataframe(teams_df, "teams")
 
+        # 3) Donnees de competition dependantes des equipes
         raw_matches = get_matches(competition_code)
         matches_df = transform_matches(raw_matches)
         load_dataframe(matches_df, "matches")

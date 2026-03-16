@@ -23,6 +23,7 @@ def load_dataframe(df: pd.DataFrame, table_name: str):
     # Convertit NaN en None et numpy types en types Python natifs.
     df = df.astype(object).where(pd.notnull(df), None)
 
+    # On construit la requete depuis les colonnes du DataFrame.
     columns = list(df.columns)
     values = []
 
@@ -44,6 +45,7 @@ def load_dataframe(df: pd.DataFrame, table_name: str):
         ON CONFLICT DO NOTHING
     """
 
+    # executemany envoie toutes les lignes en un lot.
     with conn.cursor() as cur:
         cur.executemany(query, values)
         conn.commit()
