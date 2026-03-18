@@ -13,6 +13,30 @@ CREATE TABLE teams (
     crest TEXT
 );
 
+CREATE TABLE coaches (
+    coach_id BIGINT PRIMARY KEY,
+    team_id BIGINT UNIQUE,
+    name TEXT,
+    date_of_birth DATE,
+    nationality TEXT,
+
+    FOREIGN KEY (team_id) REFERENCES teams(team_id)
+);
+
+CREATE TABLE squads (
+    team_id BIGINT,
+    player_id BIGINT,
+    name TEXT,
+    position TEXT,
+    date_of_birth DATE,
+    nationality TEXT,
+    shirt_number INTEGER,
+
+    PRIMARY KEY (team_id, player_id),
+
+    FOREIGN KEY (team_id) REFERENCES teams(team_id)
+);
+
 CREATE TABLE matches (
     match_id BIGINT PRIMARY KEY,
     competition_id BIGINT,

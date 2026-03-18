@@ -61,32 +61,45 @@ def transform_standing(raw_standing_data: Dict[str, Any]) -> pd.DataFrame:
     return df
 
 def transform_squad(raw_squad_data: Dict[str, Any]) -> pd.DataFrame:
-    squads=raw_squad_data.get("squad", [])
-    df = pd.DataFrame(squads)
-    df = df.rename(columns={
-        "dateOfBirth": "date_of_birth",  
-    })
-    return df
+    squad = raw_squad_data.get("squad", [])
+    team_id = raw_squad_data.get("id")
+
+    if not squad:
+        return pd.DataFrame()
+
+    rows = []
+    for player in squad:
+        player_id = player.get("id")
+        if not player_id:
+            continue
+
+        rows.append({
+            "team_id": team_id,
+            "player_id": player_id,
+            "name": player.get("name"),
+            "position": player.get("position"),
+            "date_of_birth": player.get("dateOfBirth"),
+            "nationality": player.get("nationality"),
+            "shirt_number": player.get("shirtNumber"),
+        })
+
+    if not rows:
+        return pd.DataFrame()
+
+    return pd.DataFrame(rows)
 
 def transform_coach(raw_team_data: Dict[str, Any]) -> pd.DataFrame:
     coach = raw_team_data.get("coach")
-    if not coach:
+    coach_id = coach.get("id") if coach else None
+    if not coach_id:
         return pd.DataFrame()
-    df = pd.DataFrame([coach])
-    df = df[
-        [
-            "id",
-            "name",
-            "dateOfBirth",
-            "nationality",
-        ]
-    ]
-    df = df.rename(columns={
-        "dateOfBirth": "date_of_birth",
-    })
-    df["team_id"] = raw_team_data.get("id")
-
-    return df
+    return pd.DataFrame([{
+        "coach_id": coach_id,
+        "team_id": raw_team_data.get("id"),
+        "name": coach.get("name"),
+        "date_of_birth": coach.get("dateOfBirth"),
+        "nationality": coach.get("nationality"),
+    }])
 
 
 def transform_match(raw_match_data: Dict[str, Any]) -> Dict[str, Any]:

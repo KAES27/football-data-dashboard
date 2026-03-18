@@ -13,6 +13,8 @@ Construire un site qui permet de consulter les donnees des 5 grands championnats
 Recuperer puis stocker en base:
 - competitions
 - teams
+- coaches
+- squads
 - matches
 - standings
 - scorers
@@ -77,7 +79,6 @@ psql -U postgres -d football_db -f database/schema.sql
 python pipeline/main.py
 ```
 
-Le script charge automatiquement les 5 championnats.
 
 ## Notes importantes
 
@@ -100,7 +101,5 @@ Le script charge automatiquement les 5 championnats.
 
 - Ajouter les tables et le chargement pour:
   - `goals`
-  - `coach`
-  - `squad`
 - Ajouter des tests unitaires sur `transform.py`.
 - Brancher backend/frontend sur la base pour exposer les donnees.
