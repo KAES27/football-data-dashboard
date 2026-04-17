@@ -1,0 +1,149 @@
+.matches-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filter-wrap {
+  position: relative;
+  width: fit-content;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.filter-day {
+  height: 38px;
+  min-width: 150px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: white;
+  color: #111827;
+  outline: none;
+}
+
+.filter-day::placeholder {
+  color: #9ca3af;
+}
+
+.filter-day:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.filter-dropdown {
+  position: relative;
+  bottom: 40px;
+  left: 55px;
+  z-index: 10;
+  width: 140px;
+  border: 1px solid #d1d5db;
+ 
+  
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.filter-option {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 6px 8px;
+  text-align: left;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.matchday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.matchday-section {
+  background: #3b3062;;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  color:white;
+}
+
+.matchday-title {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  
+}
+
+.match-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.match-card {
+  background:  #3f556b;
+  
+  border-radius: 10px;
+  padding: 10px;
+  justify-items: center;
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.match-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+.status-timed {
+  color: #0f766e;
+  background: #ccfbf1;
+}
+
+.status-finished {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.match-date {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.match-teams {
+  font-weight: 600;
+}
+
+.empty-state {
+  margin: 0;
+  color: #6b7280;
+}
