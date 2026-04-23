@@ -1,4 +1,3 @@
-
 function CardMatch({ matches,dayfiltre }) {
   const groupedByMatchday = matches.reduce((acc, match) => {
     const dayKey =
@@ -18,6 +17,44 @@ function CardMatch({ matches,dayfiltre }) {
     return Number(a) - Number(b);
   });
 
+  function renderTeams(match) {
+    const home = (
+      <img
+        src={match.home_team_crest}
+        alt={`${match.home_team_name} crest`}
+        className="match-team-crest"
+      />
+    );
+
+    const away = (
+      <img
+        src={match.away_team_crest}
+        alt={`${match.away_team_name} crest`}
+        className="match-team-crest"
+      />
+    );
+
+    if (match.status === "TIMED") {
+      return (
+        <span className="match-teams-line">
+          {home}
+          <span>vs</span>
+          {away}
+        </span>
+      );
+    }
+
+    return (
+      <span className="match-teams-line">
+        {home}
+        <span>
+          {match.home_score} - {match.away_score}
+        </span>
+        {away}
+      </span>
+    );
+  }
+
 
   return (
     
@@ -26,7 +63,7 @@ function CardMatch({ matches,dayfiltre }) {
 
           <section key={dayfiltre} className="matchday-section">
           <h3 className="matchday-title">
-            {dayfiltre === "unknown" ? "Journée non renseignée" : `Journée ${dayfiltre}`}
+            {dayfiltre === "unknown" ? "Journée non renseignée" : `Day ${dayfiltre}`}
           </h3>
             {groupedByMatchday[dayfiltre]?(
             <ul className="match-cards">
@@ -43,16 +80,7 @@ function CardMatch({ matches,dayfiltre }) {
                 </div>
 
                 <div className="match-teams">
-                  {match.status === "TIMED" ? (
-                    <span>
-                      {match.home_team_name} vs {match.away_team_name}
-                    </span>
-                  ) : (
-                    <span>
-                      {match.home_team_name} {match.home_score} - {match.away_score}{" "}
-                      {match.away_team_name}
-                    </span>
-                  )}
+                  {renderTeams(match)}
                 </div>
               </li>
             ))}
@@ -66,7 +94,7 @@ function CardMatch({ matches,dayfiltre }) {
       ):(orderedDays.map((day) => (
         <section key={day} className="matchday-section">
           <h3 className="matchday-title">
-            {day === "unknown" ? "Journée non renseignée" : `Journée ${day}`}
+            {day === "unknown" ? "Journée non renseignée" : `Day ${day}`}
           </h3>
 
           <ul className="match-cards">
@@ -83,16 +111,7 @@ function CardMatch({ matches,dayfiltre }) {
                 </div>
 
                 <div className="match-teams">
-                  {match.status === "TIMED" ? (
-                    <span>
-                      {match.home_team_name} vs {match.away_team_name}
-                    </span>
-                  ) : (
-                    <span>
-                      {match.home_team_name} {match.home_score} - {match.away_score}{" "}
-                      {match.away_team_name}
-                    </span>
-                  )}
+                  {renderTeams(match)}
                 </div>
               </li>
             ))}

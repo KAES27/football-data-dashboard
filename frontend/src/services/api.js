@@ -19,13 +19,22 @@ export async function getTeamsbyid(id){
     const json=getApi(route);
     return json;
 }
+export async function getTeamsByCompetition(code){
+    const route=`/competitions/${code}/teams`;
+    const json=getApi(route);
+    return json;
+}
 export async function getTeamsdetailsbyid(id){
     const route=`/teams/${id}/details`;
     const json=getApi(route);
     return json;
 }
-export async function getMatchesofTeam(id){
-    const route=`/teams/${id}/matches`;
+export async function getMatchesofTeam(id,status){
+    let route=`/teams/${id}/matches`;
+    if (status){
+        route +=`?status=${status}`
+    }
+   
     const json=getApi(route);
     return json ;
 }

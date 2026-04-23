@@ -80,7 +80,7 @@
 }
 
 .matchday-section {
-  background: #3b3062;;
+  background: #3f556b;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 12px;
@@ -102,8 +102,7 @@
 }
 
 .match-card {
-  background:  #3f556b;
-  
+  background: #3b3062; 
   border-radius: 10px;
   padding: 10px;
   justify-items: center;
@@ -141,6 +140,20 @@
 
 .match-teams {
   font-weight: 600;
+}
+
+.match-teams-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.match-team-crest {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .empty-state {

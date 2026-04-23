@@ -4,10 +4,11 @@ export async function getTeams(req, res) {
   const code = req.params.code;
   try{
         const result =await pool.query(  `
-                SELECT teams.name,teams.short_name,teams.tla,teams.crest 
+                SELECT teams.team_id, teams.name, teams.short_name, teams.tla, teams.crest
                 FROM teams
                 JOIN competitions ON teams.competition_id = competitions.competition_id
                 WHERE competitions.code = $1
+                ORDER BY teams.name
                 `,[code]);
             res.json(result.rows);
    } catch (error) {

@@ -4,8 +4,8 @@ export async function getMatchesByid(req, res) {
     const id=req.params.id;
     try {
     const result = await pool.query(  `
-                SELECT competitions.name AS competition, matches.utc_date, matches.status , matches.matchday ,home_team.name AS home_team_name,
-                away_team.name AS away_team_name ,matches.home_score, matches.away_score,matches.winner
+                SELECT  matches.match_id,matches.utc_date, matches.status , matches.matchday ,home_team.name AS home_team_name,home_team.crest AS home_team_crest,
+                away_team.name AS away_team_name ,away_team.crest AS away_team_crest,matches.home_score, matches.away_score,matches.winner
                 FROM Matches
                 JOIN teams AS home_team
                 ON matches.home_team_id = home_team.team_id
@@ -72,8 +72,8 @@ export async function getMatches(req, res) {
     try {
     if(status){  
     const result = await pool.query(  `
-                SELECT matches.match_id, competitions.name AS competition, matches.utc_date, matches.status , matches.matchday ,home_team.name AS home_team_name,
-                away_team.name AS away_team_name ,matches.home_score, matches.away_score,matches.winner
+                SELECT  matches.match_id,matches.utc_date, matches.status , matches.matchday ,home_team.name AS home_team_name,home_team.crest AS home_team_crest,
+                away_team.name AS away_team_name ,away_team.crest AS away_team_crest,matches.home_score, matches.away_score,matches.winner
                 FROM Matches
                 JOIN teams AS home_team
                 ON matches.home_team_id = home_team.team_id
@@ -86,8 +86,8 @@ export async function getMatches(req, res) {
               res.json(result.rows);
     }else{
            const result = await pool.query(  `
-                SELECT competitions.name AS competition, matches.utc_date, matches.status , matches.matchday ,home_team.name AS home_team_name,
-                away_team.name AS away_team_name ,matches.home_score, matches.away_score,matches.winner
+                SELECT  matches.match_id,matches.utc_date, matches.status , matches.matchday ,home_team.name AS home_team_name,home_team.crest AS home_team_crest,
+                away_team.name AS away_team_name ,away_team.crest AS away_team_crest,matches.home_score, matches.away_score,matches.winner
                 FROM Matches
                 JOIN teams AS home_team
                 ON matches.home_team_id = home_team.team_id

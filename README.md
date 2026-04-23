@@ -128,4 +128,4 @@ Frontend Vite en local (port affiche dans le terminal, souvent `5173`).
 
 - Le chargement ETL utilise `ON CONFLICT DO NOTHING` dans `load.py`.
 - `shirt_number` peut etre `NULL` selon les donnees renvoyees par l'API source.
-- `frontend/public/` est ignore dans Git (config projet actuelle).
+

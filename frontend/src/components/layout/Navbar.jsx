@@ -1,6 +1,7 @@
 import CompetitionDropdown from "./CompetitionDropdown";
 import { getCompetitions } from "../../services/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, } from "react";
+import { Link } from "react-router-dom";
 
 
   
@@ -43,7 +44,10 @@ function Navbar() {
         background:" #3f556b",
       }}
     >
-      <h2 style={{ margin: 0, fontSize: "20px" }}>Football Dashboard</h2>
+       <Link
+        to={`/`}
+        style={{ margin: 0, fontSize: "20px",color:"white", textDecoration: "none",fontWeight:"20px" }}>Football Dashboard
+      </Link>
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {competitions.map((competition) => (
